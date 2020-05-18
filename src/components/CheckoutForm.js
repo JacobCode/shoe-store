@@ -6,17 +6,17 @@ import {
 } from '@stripe/react-stripe-js';
 
 function CheckoutForm() {
-	const stripe = useStripe();
-	const elements = useElements();
-	const handleSubmit = async (event) => {
+	var stripe = useStripe();
+	var elements = useElements();
+	var handleSubmit = async (event) => {
 		event.preventDefault();
-		const {error, paymentMethod} = await stripe.createPaymentMethod({
+		var {error, paymentMethod} = await stripe.createPaymentMethod({
 			type: 'card',
 			card: elements.getElement(CardElement),
 		});
+		if (error) console.error(error);
 		console.log(paymentMethod);
 	};
-
 	return (
 		<form onSubmit={handleSubmit}>
 			<CardElement />
