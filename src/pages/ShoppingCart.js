@@ -2,14 +2,13 @@ import React from 'react';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import CheckoutForm from '../components/CheckoutForm';
+import { removeFromCart } from '../features/cartManager';
+import { useDispatch } from 'react-redux';
 
-import { useSelector, useDispatch } from 'react-redux';
-import { removeFromCart, selectCart } from '../features/cartManager';
-
-export default function ShoppingCart() {
-	const stripePromise = loadStripe('pk_test_6pRNASCoBOKtIshFeQd4XMUh');
-	var cart = useSelector(selectCart).cart;
+export default function ShoppingCart(props) {
+	var { cart } = props;
 	var dispatch = useDispatch();
+	var stripePromise = loadStripe('pk_test_6pRNASCoBOKtIshFeQd4XMUh');
 	return (
 		<div>
 			<div className="cart-items">
