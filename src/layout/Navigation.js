@@ -7,13 +7,13 @@ import { selectCart } from '../features/cartManager';
 import close from '../media/close.svg';
 import cartIcon from '../media/cart.svg';
 
-function Navigation() {
+export default function Navigation() {
 	const [isOpen, toggle] = useState(false);
 	var cart = useSelector(selectCart).cart;
 	const [cartNumber, setNumber] = useState(cart.length);
 	useEffect(() => {
 		setNumber(cart.length);
-	}, [cart])
+	}, [cart]);
 	return (
 		<nav>
 			<div className="container-fluid">
@@ -37,14 +37,11 @@ function Navigation() {
 					<img src={close} alt="Close Menu" />
 				</div>
 				<div className="links">
-					<Link to="/" data-link="1">Home</Link>
-					<Link to="/store" data-link="2">Store</Link>
-					<Link to="/cart" data-link="3">Cart {'('}{cartNumber}{')'}</Link>
-					<Link to="/" data-link="4">Login / Sign Up</Link>
+					<Link onClick={() => toggle(false)} className={`${window.location.pathname === '/' ? 'active' : ''}`} to="/">Home</Link>
+					<Link onClick={() => toggle(false)} className={`${window.location.pathname === '/store' ? 'active' : ''}`} to="/store">Store</Link>
+					<Link onClick={() => toggle(false)} className={`${window.location.pathname === '/cart' ? 'active' : ''}`} to="/cart">Cart ({cartNumber})</Link>
 				</div>
 			</div>
 		</nav>
 	)
 }
-
-export default Navigation;
