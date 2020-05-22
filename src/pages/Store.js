@@ -43,13 +43,16 @@ export default function Store(props) {
 
 	return (
 		<div>
-			<FilterBar loading={loading} toggleLoading={toggleLoading} />
-			<div className="container">
+			<FilterBar toggleLoading={toggleLoading} />
+			<div className="container-fluid">
 				<div className="items d-flex flex-row justify-content-center">
 					{loading ? <h1 className="loading">Loading...</h1> : 
 					currentShoes.map((s) => {
+						{/* Check if item is already in cart */}
+						var itemInCart = cart.filter((c) => c._id === s._id)[0];
+						var isInCart = itemInCart !== undefined ? true : false;
 						return (
-							<ShoeCard key={s._id} shoe={s} />
+							<ShoeCard inCart={isInCart} key={s._id} shoe={s} />
 						)
 					})}
 				</div>

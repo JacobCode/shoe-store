@@ -4,7 +4,7 @@ import { setStoreResults } from '../features/storeManager';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import axios from 'axios';
 
-export default function FilterBar({ toggleLoading, loading }) {
+export default function FilterBar({ toggleLoading }) {
 	var dispatch = useDispatch();
 	var [userInput, setUserInput] = useReducer(
 		(state, newState) => ({
@@ -17,15 +17,13 @@ export default function FilterBar({ toggleLoading, loading }) {
 		}
 	);
 	var { chosen_brand, chosen_gender, chosen_price } = userInput;
-	function handleChange(evt) {
-		var name = evt.target.name;
-		var newValue = evt.target.value;
-		setUserInput({
-			[name]: newValue
-		});
+	function handleChange(e) {
+		var name = e.target.name;
+		var newValue = e.target.value;
+		setUserInput({ [name]: newValue });
 	}
 	async function searchStore() {
-		var results = axios.get(`https://shoe-server.herokuapp.com/api/search/${chosen_brand}/${chosen_gender}`);
+		var results = axios.get(`https://shoe-server.herokuapp.com/api/search/${chosen_brand}/${chosen_gender}/${chosen_price}`);
 		return results;
 	}
 	function handleSubmit(e) {

@@ -187,6 +187,13 @@
 				width: 40px;
 				z-index: 5;
 				transition: background 0.2s ease-in-out;
+				box-shadow: none;
+				&.in-cart {
+					background: #28a745;
+					&:hover {
+						background: #28a745;
+					}
+				}
 				&:hover {
 					background: darken(#007bff, 10%);
 				}
