@@ -13,7 +13,7 @@ app.disable('x-powered-by');
 app.enable("trust proxy");
 
 const Store = require('./models/store');
-const db = process.env.DB;
+const db = 'mongodb://jacob:jacob1400@ds157574.mlab.com:57574/shoes';
 mongoose.connect(db, {useNewUrlParser: true })
     .then(() => {
         console.log('✅ MONGO DB CONNECTED');
@@ -29,11 +29,12 @@ app.get('/api/all', (req, res) => {
 });
 
 // Search Shoes (GET)
-app.get('/api/search/:brand/:gender', (req, res) => {
+app.get('/api/search/:brand/:gender/:price', (req, res) => {
+	var price = req.params.price;
     var brand = req.params.brand !== 'All' ? req.params.brand.charAt(0).toUpperCase() + req.params.brand.slice(1) : ['Nike', 'Adidas', 'Jordan', 'Vans'];
     var gender = req.params.gender !== 'All' ? req.params.gender.charAt(0).toUpperCase() + req.params.gender.slice(1) : ['Men', 'Women'];
     Store.find({ brand: brand, gender: gender })
-        .then(shoes => res.json(shoes));
+        .then(shoes => res.json(shoes.filter((s) => s.price <= price)));
 });
 
 
