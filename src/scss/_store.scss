@@ -109,6 +109,7 @@
 }
 
 .pagination-container {
+	margin-bottom: 1.5rem;
 	#pagination-controller {
 		justify-content: flex-start;
 	}
@@ -117,7 +118,7 @@
 .items {
 	padding: 1rem 0;
 	transition: opacity 1s ease-in-out;
-	min-height: 60vh;
+	min-height: 80vh;
 	flex-wrap: wrap;
 	align-items: center;
 	.loading {
@@ -126,7 +127,7 @@
 	}
 	.shoe-card {
 		width: 25%;
-		min-width: 175px;
+		width: 250px;
 		max-width: 250px;
 		padding: 1rem;
 		.inner {
@@ -156,7 +157,6 @@
 			.shoe-image {
 				height: 150px;
 				width: 100%;
-				max-width: 175px;
 				background-size: contain;
 				background-repeat: no-repeat;
 				transform: rotate(15deg);
@@ -164,7 +164,15 @@
 				position: absolute;
 				top: 50%;
 				left: 50%;
-				transform: translate(-50%, -40%);
+				transform: translate(-50%, -50%);
+			}
+			.shoe-imag {
+				max-width: 100%;
+				z-index: 4;
+				position: absolute;
+				top: 20%;
+				left: 50%;
+				transform: translateX(-50%);
 			}
 			span {
 				position: absolute;
@@ -238,10 +246,7 @@
 	}
 	.items {
 		.shoe-card {
-			min-width: 250px;
-			.inner {
-				min-height: 250px;
-			}
+			width: 250px;
 		}
 	}
 }
@@ -251,7 +256,12 @@
 	}
 	.items {
 		.shoe-card {
-			width: 100%;
+			width: 220px;
+			.inner {
+				.shoe-image {
+					transform: translate(-50%, -50%);
+				}
+			}
 		}
 	}
 }
