@@ -6,7 +6,7 @@ export default function({ shoesPerPage, totalShoes, currentPage, setCurrentPage 
 	var availablePages = Math.ceil(totalShoes / shoesPerPage);
 	var nextPage = currentPage + 1 <= availablePages ? currentPage + 1 : 1;
 	var previousPage = currentPage - 1 >= 1 ? currentPage - 1 : availablePages;
-	for (var i = 1; i <= 8; i++) {
+	for (var i = 1; i <= 7; i++) {
 		pageNumbers.push(i);
 	}
 	return (

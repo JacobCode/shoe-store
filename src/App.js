@@ -9,6 +9,7 @@ import './scss/app.scss';
 
 // Layout
 import Navigation from './layout/Navigation';
+import Footer from './layout/Footer';
 
 // Pages
 import Home from './pages/Home';
@@ -26,6 +27,7 @@ function App() {
 				<Route path={process.env.PUBLIC_URL + '/store'} render={() => <Store cart={cart} results={results} />} exact />
 				<Route path={process.env.PUBLIC_URL + '/cart'} render={() => <ShoppingCart cart={cart} />} exact />
 			</Switch>
+			<Footer />
 		</div>
 	);
 }

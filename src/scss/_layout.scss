@@ -11,7 +11,7 @@ nav {
             justify-content: space-between;
 			cursor: pointer;
 			height: 14px;
-			width: 20px;
+			width: 50px;
             .bar {
                 background: black;
                 width: 15px;
@@ -44,7 +44,13 @@ nav {
                 text-decoration: none;
                 &:hover {
                     color: black;
-                }
+				}
+				&:first-of-type {
+
+				}
+				&:last-of-type {
+
+				}
             }
             .divider {
                 height: 35px;
@@ -56,9 +62,10 @@ nav {
             display: flex;
             align-items: center;
             justify-content: center;
-            text-decoration: none !important;
+			text-decoration: none !important;
+			width: 50px;
             img {
-				margin-right: 0.5rem;
+				margin-right: 0.25rem;
             }
             span {
                 color: black;
@@ -124,4 +131,73 @@ nav {
             }
         }
     }
+}
+
+.footer {
+	background-color: #f8f9fa;
+	.copyright {
+		div {
+			line-height: 1.5;
+			a {
+				color: #007bff;
+			}
+		}
+	}
+
+	.container {
+		padding: 1rem;
+	}
+
+	ul {
+		list-style: none;
+		padding: 0;
+		&.footer-company {
+			li {
+				line-height: 1.5;
+				i {
+					margin-right: 1rem;
+					font-size: 1.5rem;
+					color: #007bff;
+				}
+				&:nth-of-type(4) {
+					margin-bottom: 1rem;
+				}
+				&:last-of-type {
+					display: flex;
+					align-items: center;
+				}
+			}
+		}
+		&.footer-sitemap {
+			li {
+				a {
+					line-height: 1.5;
+				}
+			}
+		}
+		&.footer-social {
+			.social {
+				margin-right: 1rem;
+				color: #007bff;
+				font-size: 1.5rem;
+			}
+		}
+	}
+
+	h6 {
+		display: block;
+		font-size: 1rem;
+		color: rgb(80, 80, 80);
+		margin: 1.5rem 0;
+		padding-bottom: 0.5rem;
+		border-bottom: 1px solid #d7d7d7;
+		font-weight: 600;
+	}
+
+	.bottom {
+		border-top: 1px solid #d7d7d7;
+		margin-top: 1.5rem;
+		padding: 1rem;
+	}
+
 }

@@ -11,7 +11,7 @@ import ShoeCard from '../components/ShoeCard';
 export default function Store(props) {
 	var { cart, results } = props;
 	var [currentPage, setCurrentPage] = useState(1);
-	var [shoesPerPage, setShoesPerPage] = useState(10);
+	var [shoesPerPage, setShoesPerPage] = useState(16);
 	var [loading, toggleLoading] = useState(false);
 	var dispatch = useDispatch();
 
@@ -42,9 +42,9 @@ export default function Store(props) {
 	var currentShoes = results.slice(indexOfFirstShoe, indexOfLastShoe);
 
 	return (
-		<div>
+		<div id="store">
 			<FilterBar toggleLoading={toggleLoading} />
-			<div className="container-fluid">
+			<div className="container">
 				<div className="items d-flex flex-row justify-content-center">
 					{loading ? <h1 className="loading">Loading...</h1> : 
 					currentShoes.map((s) => {
