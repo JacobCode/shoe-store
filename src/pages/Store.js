@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { setStoreResults } from '../features/storeManager';
 import axios from 'axios';
+import loadingImage from '../media/three-dots.svg';
 
 // Components
 import FilterBar from '../components/FilterBar';
@@ -10,10 +11,15 @@ import ShoeCard from '../components/ShoeCard';
 
 export default function Store(props) {
 	var { cart, results } = props;
+	var topResults = useRef(null);
 	var [currentPage, setCurrentPage] = useState(1);
-	var [shoesPerPage, setShoesPerPage] = useState(16);
+	var [shoesPerPage, setShoesPerPage] = useState(15);
 	var [loading, toggleLoading] = useState(false);
 	var dispatch = useDispatch();
+
+	function scrollToResults() {
+		document.getElementById('results').scrollIntoView({ behavior: "smooth" });
+	};
 
 	useEffect(() => {
 		async function getData() {
@@ -29,13 +35,7 @@ export default function Store(props) {
 				}).then(() => setTimeout(() => toggleLoading(false), 1500))
 				.catch((err) => console.error(err));
 		}
-	}, [])
-
-	useEffect(() => {
-		if (currentPage !== 1) {
-			setCurrentPage(1);
-		}
-	}, [results])
+	}, [dispatch, results.length]);
 
 	var indexOfLastShoe = currentPage * shoesPerPage;
 	var indexOfFirstShoe = indexOfLastShoe - shoesPerPage;
@@ -43,21 +43,21 @@ export default function Store(props) {
 
 	return (
 		<div id="store">
-			<FilterBar toggleLoading={toggleLoading} />
-			<div className="container">
-				<div className="items d-flex flex-row justify-content-center">
-					{loading ? <h1 className="loading">Loading...</h1> : 
-					currentShoes.map((s) => {
-						{/* Check if item is already in cart */}
-						var itemInCart = cart.filter((c) => c._id === s._id)[0];
-						var isInCart = itemInCart !== undefined ? true : false;
-						return (
-							<ShoeCard inCart={isInCart} key={s._id} shoe={s} />
-						)
-					})}
-				</div>
+			<FilterBar setCurrentPage={setCurrentPage} toggleLoading={toggleLoading} />
+			<div id="results" className="items d-flex flex-row justify-content-center">
+				{loading ?
+					<div className="loading">
+					<img src={loadingImage} alt="Loading Store" />
+				</div> : 
+				currentShoes.map((s, i) => {
+					var itemInCart = cart.filter((c) => c._id === s._id)[0];
+					var isInCart = itemInCart !== undefined ? true : false;
+					return (
+						<ShoeCard inCart={isInCart} key={s._id} shoe={{...s, size: isInCart ? itemInCart.size : "8"}} />
+					)
+				})}
 			</div>
-			<PaginationController setCurrentPage={setCurrentPage} currentPage={currentPage} shoesPerPage={shoesPerPage} totalShoes={results.length} />
+			<PaginationController scrollToResults={scrollToResults} topResults={topResults} setShoesPerPage={setShoesPerPage} setCurrentPage={setCurrentPage} currentPage={currentPage} shoesPerPage={shoesPerPage} totalShoes={results.length} />
 		</div>
 	)
 }
