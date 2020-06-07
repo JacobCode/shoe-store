@@ -1,5 +1,7 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
 
 import { selectCart } from './features/cartManager';
 import { selectResults } from './features/storeManager';
@@ -19,13 +21,17 @@ import ShoppingCart from './pages/ShoppingCart';
 function App() {
 	var cart = useSelector(selectCart).cart;
 	var results = useSelector(selectResults).results;
+	var stripePromise = loadStripe('pk_test_6pRNASCoBOKtIshFeQd4XMUh');
 	return (
 		<div className="App">
 			<Navigation />
 			<Switch>
 				<Route path={process.env.PUBLIC_URL + '/'} component={Home} exact />
 				<Route path={process.env.PUBLIC_URL + '/store'} render={() => <Store cart={cart} results={results} />} exact />
-				<Route path={process.env.PUBLIC_URL + '/cart'} render={() => <ShoppingCart cart={cart} />} exact />
+				<Route path={process.env.PUBLIC_URL + '/cart'} render={() => 
+					<Elements stripe={stripePromise}>
+						<ShoppingCart cart={cart} />
+					</Elements>} exact />
 			</Switch>
 			<Footer />
 		</div>
