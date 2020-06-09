@@ -4,7 +4,7 @@ import { setStoreResults } from '../features/storeManager';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import axios from 'axios';
 
-export default function FilterBar({ toggleLoading }) {
+export default function FilterBar({ toggleLoading, setCurrentPage }) {
 	var dispatch = useDispatch();
 	var [userInput, setUserInput] = useReducer(
 		(state, newState) => ({
@@ -33,6 +33,7 @@ export default function FilterBar({ toggleLoading }) {
 			.then((res) => {
 				var { status, data } = res;
 				if (status === 200) {
+					setCurrentPage(1);
 					dispatch(setStoreResults(data));
 				}
 			})
@@ -46,7 +47,7 @@ export default function FilterBar({ toggleLoading }) {
 					<FormGroup>
 						<Label htmlFor="priceSelect">Price</Label>
 						<input id="priceSelect" onChange={handleChange} name="chosen_price" type="range" min="60" max="1000" value={chosen_price} />
-						<p>${chosen_price}</p>
+						<p>${chosen_price >= 1000 ? chosen_price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") : chosen_price}</p>
 					</FormGroup>
 				</div>
 				<div className="brand filter">

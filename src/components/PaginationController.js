@@ -1,7 +1,7 @@
 import React from 'react';
-import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
+import { Pagination, PaginationItem, PaginationLink, Input } from 'reactstrap';
 
-export default function({ shoesPerPage, totalShoes, currentPage, setCurrentPage }) {
+export default function({ shoesPerPage, totalShoes, currentPage, setCurrentPage, setShoesPerPage, scrollToResults }) {
 	var pageNumbers = [];
 	var availablePages = Math.ceil(totalShoes / shoesPerPage);
 	var nextPage = currentPage + 1 <= availablePages ? currentPage + 1 : 1;
@@ -9,19 +9,23 @@ export default function({ shoesPerPage, totalShoes, currentPage, setCurrentPage 
 	for (var i = 1; i <= 7; i++) {
 		pageNumbers.push(i);
 	}
+	var pageOptions = [15, 30, 45, 60, 'All'];
 	return (
-		<div className="pagination-container container-fluid d-flex align-items-center justify-content-between flex-wrap" >
+		<div className="pagination-container container d-flex align-items-center justify-content-between flex-wrap" >
 			<Pagination id="pagination-controller" aria-label="pagination">
 				{/* Previous Page Button */}
 				<PaginationItem onClick={() => {
+					scrollToResults();
 					setCurrentPage(previousPage);
 				}}>
 					<PaginationLink previous />
 				</PaginationItem>
 
+				{/* Pages */}
 				{pageNumbers.map((page) => {
 					return (
 						<PaginationItem onClick={() => {
+							scrollToResults();
 							if (availablePages >= page) {
 								setCurrentPage(page);
 							}
@@ -36,12 +40,31 @@ export default function({ shoesPerPage, totalShoes, currentPage, setCurrentPage 
 
 				{/* Next Page Button */}
 				<PaginationItem onClick={() => {
+					scrollToResults();
 					setCurrentPage(nextPage);
 				}}>
 					<PaginationLink next />
 				</PaginationItem>
 			</Pagination>
-			<h5>Results: {totalShoes}</h5>
+
+			<div className="results-controller d-flex align-items-center justify-content-center">
+				<p>Shoes Per Page:</p>
+				<Input type="select" defaultValue={15} onChange={(e) => {
+					var input = e.target.value;
+					setCurrentPage(1);
+					if (input === 'All') {
+						setShoesPerPage(75);
+					} else {
+						setShoesPerPage(Number(input));
+					}
+				}} name="results-per-page">
+					{pageOptions.map((o) => {
+						return (
+							<option key={o}>{o}</option>
+						)
+					})}
+				</Input> 
+			</div>
 		</div>
 	)
 }
