@@ -104,7 +104,7 @@ export default function Home() {
 						<div className="left grid">
 							{brands.map((b, i) => {
 								return (
-									<div key={i} className="brand" style={{ backgroundImage: `url('${b.logo}')` }}></div>
+									<div key={i} className="b" style={{ backgroundImage: `url('${b.logo}')` }}></div>
 								)
 							})}
 						</div>

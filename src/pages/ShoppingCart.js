@@ -83,9 +83,7 @@ export default function ShoppingCart(props) {
 					</Row>
 				</div>
 				<div ref={el => right = el} className="right">
-					{/* <Elements stripe={stripePromise}> */}
-						<Checkout subtotal={subtotal} />
-					{/* </Elements> */}
+					<Checkout subtotal={subtotal} />
 				</div>
 			</main>
 		</div>
