@@ -26,15 +26,15 @@ export default function ShoppingCart(props) {
 		}
 	}, [cart]);
 	useEffect(() => {
-		TweenMax.to(left, 0.5, {
+		TweenMax.to(left, 1, {
 			top: 0,
-			duration: 0.5,
+			duration: 2,
 			opacity: 1,
 			ease: Power1.easeInOut,
 		});
 		TweenMax.to(right, 1, {
 			top: 0,
-			duration: 0.5,
+			duration: 2,
 			opacity: 1,
 			ease: Power1.easeInOut,
 		});
