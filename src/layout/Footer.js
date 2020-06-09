@@ -11,10 +11,10 @@ import {
 
 export default function Footer() {
 	return (
-		<footer className="footer">
+		<footer>
 			<Row>
 				<Col xs={12} sm={6} md={3}>
-					<ul className="footer-company text-muted">
+					<ul className="footer-company">
 						<h6>Company</h6>
 						<li>Shoe Store</li>
 						<li>7425 Melrose Ave</li>
@@ -56,7 +56,7 @@ export default function Footer() {
 				</Col>
 			</Row>
 			<Row className="copyright">
-				<Col className="text-center text-muted bottom">© 2020 Shoe Store All Rights Reserved <br /> Made by <a href="https://jacobcarver.net">Jacob Carver</a></Col>
+				<Col className="text-center bottom">© 2020 Shoe Store All Rights Reserved <br /> Made by <a href="https://jacobcarver.net">Jacob Carver</a></Col>
 			</Row>
 		</footer>
 	)

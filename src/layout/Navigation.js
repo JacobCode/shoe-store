@@ -97,7 +97,7 @@ export default function Navigation() {
 					<div className="bar middle-bar"></div>
 					<div className="bar bottom-bar"></div>
 				</div>
-				<Link to="/store" className="logo">
+				<Link to="/" className="logo">
 					<img src={logo} alt="Shoe Store" />
 				</Link>
 				<Link to="/cart" className="cart">
