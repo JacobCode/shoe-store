@@ -29,11 +29,15 @@ export const cartManager = createSlice({
 		removeFromCart: (state, action) => {
 			state.cart = [...state.cart.filter((item) => item._id !== action.payload)];
 			saveToStorage('shoeCart', state.cart);
+		},
+		emptyCart: (state) => {
+			state.cart = [];
+			saveToStorage('shoeCart', []);
 		}
 	},
 });
 
-export const { addToCart, removeFromCart } = cartManager.actions;
+export const { addToCart, removeFromCart, emptyCart } = cartManager.actions;
 
 export const selectCart = state => state.cart;
 
