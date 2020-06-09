@@ -19,13 +19,27 @@ time, mark, audio, video {
 	font-family: sans-serif;
 	box-sizing: border-box;
 	vertical-align: baseline;
+	font-family: $display;
+}
+select {
+	border: none;
+	outline: none !important;
+	box-shadow: none !important;
+	background: none;
+	border-radius: 0 !important;
 }
 article, aside, details, figcaption, figure, 
 footer, header, hgroup, menu, nav, section {
 	display: block;
 }
 body {
+	overflow-x: hidden;
 	line-height: 1;
+	font-size: 1.1rem;
+	background: white;
+	&.disable-scroll {
+		overflow-y: hidden;
+	}
 }
 ol, ul {
 	list-style: none;
