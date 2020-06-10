@@ -13,7 +13,7 @@ app.disable('x-powered-by');
 app.enable("trust proxy");
 
 const Store = require('./models/store');
-const db = 'mongodb://jacob:jacob1400@ds157574.mlab.com:57574/shoes';
+const db = process.env.DB;
 mongoose.connect(db, {useNewUrlParser: true })
     .then(() => {
         console.log('✅ MONGO DB CONNECTED');
