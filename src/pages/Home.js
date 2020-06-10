@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { FormGroup, Input, Button } from 'reactstrap';
 import { TweenMax, TweenLite, Power1, Power3, Linear } from 'gsap';
 
-import shoeImage from '../media/shoe2.png';
+import shoeImage from '../media/shoe.png';
 import nike from '../media/nike.svg';
 import adidas from '../media/adidas.svg';
 import jordan from '../media/jordan.svg';

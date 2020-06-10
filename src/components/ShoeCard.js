@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../features/cartManager';
-import { TweenMax, TweenLite, Linear } from 'gsap';
+import { TweenMax, TweenLite, Power2 } from 'gsap';
 import { Button, Input } from 'reactstrap';
 
 export default function ShoeCard({ shoe, inCart }) {
@@ -11,11 +11,11 @@ export default function ShoeCard({ shoe, inCart }) {
 	var sizes = [7, 8, 9, 10, 11, 12, 13];
 	var card = useRef(null);
 	useEffect(() => {
-		TweenLite.delayedCall(0.25, () => {
+		TweenLite.delayedCall(0.5, () => {
 			TweenMax.to(card, 1, {
 				duration: 1,
 				opacity: 1,
-				ease: Linear.easeInOut,
+				ease: Power2.easeInOut,
 			});
 		})
 	}, []);

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Redirect, Switch } from 'react-router-dom';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 
@@ -32,6 +32,7 @@ function App() {
 					<Elements stripe={stripePromise}>
 						<ShoppingCart cart={cart} />
 					</Elements>} exact />
+				<Redirect from="/*" to="/" />
 			</Switch>
 			<Footer />
 		</div>
