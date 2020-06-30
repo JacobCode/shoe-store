@@ -7,7 +7,7 @@ import { TweenMax, Power1 } from 'gsap';
 // Image
 import close from '../media/close.svg';
 import cartIcon from '../media/cart.svg';
-import logo from '../media/logo.svg';
+import logo from '../media/logo.png';
 
 export default function Navigation() {
 	var [isOpen, toggle] = useState(false);

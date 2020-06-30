@@ -77,9 +77,9 @@ export default function CheckoutForm({ subtotal }) {
 	var [processing, setProcessing] = useState(false);
 	var [paymentMethod, setPaymentMethod] = useState(null);
 	var [billingDetails, setBillingDetails] = useState({
-		email: 'johndoe@email.com',
-		phone: '1234567890',
-		name: 'John Doe',
+		email: '',
+		phone: '',
+		name: '',
 	});
 
 	var handleSubmit = async (event) => {

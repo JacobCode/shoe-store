@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { FormGroup, Input, Button } from 'reactstrap';
 import { TweenMax, TweenLite, Power1, Power3, Linear } from 'gsap';
 
@@ -68,13 +69,13 @@ export default function Home() {
 			<div>
 				<div className="hero container-fluid">
 					<div ref={el => left = el} className="hero-left"></div>
-					<div className="hero-middle">
+					<Link to="/store" className="hero-middle">
 						<svg viewBox="0 0 110 110">
 							<circle cx="50%" cy="50%" r="50" className="fill"></circle>
 							<circle cx="50%" cy="50%" r="50" className="progress" ref={el => svg = el}></circle>
 						</svg>
 						<img ref={el => img = el} src={shoeImage} alt="Welcome to Shoe Store" />
-					</div>
+					</Link>
 					<div ref={el => right = el} className="hero-right"></div>
 				</div>
 				
